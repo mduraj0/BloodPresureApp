@@ -17,7 +17,7 @@ def glucoses_list(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-        return HttpResponseRedirect(reverse('glucoses:list'))
+            return HttpResponseRedirect(reverse('glucoses:list'))
     return render(request, "glucoses/list.html", {'glucoses': glucoses, 'form': form})
 
 

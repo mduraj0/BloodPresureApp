@@ -23,7 +23,7 @@ def bloodpressures_list(request):
 
 @login_required
 def bloodpressures_details(request, bp_id):
-    bloodpressure = BloodPressure.objects.filter(user=request.user, id=bp_id)
+    bloodpressure = BloodPressure.objects.get(user=request.user, id=bp_id)
     form = BloodPressureForm(instance=bloodpressure)
     if request.method == "POST":
         form = BloodPressureForm(request.POST, instance=bloodpressure)
