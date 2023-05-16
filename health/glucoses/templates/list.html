@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Lista pomiarów </h2>
+    <table>
+        <tr>
+        <th> Data</th>
+        <th> Poziom cukru </th>
+        </tr>
+        {% for el in glucoses %}
+        <tr>
+            <td><a href="{% url 'glucoses:details' el.id %}">
+            {{ el.record_datetime }}</a></td>
+            <td> {{ el.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+        <h2> Dodaj nowy pomiar </h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" >Dodaj</button>
+        </form>
+    </div>
+{% endblock %}

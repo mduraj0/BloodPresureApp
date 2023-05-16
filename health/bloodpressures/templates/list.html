@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Lista pomiarów</h2>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Skurczowe</th>
+            <th>Rozkurczowe</th>
+            <th>Puls</th>
+        </tr>
+        {% for el in bloodpressures %}
+            <tr>
+                <td><a href="{% url 'bloodpressures:details' el.id %}">
+                    {{ el.record_datetime }}</a></td>
+                <td>{{ el.systolic }}</td>
+                <td>{{ el.diastolic }}</td>
+                <td>{{ el.pulse }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+        <h2>Dodaj nowy pomiar</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Zmień</button>
+        </form>
+    </div>
+{% endblock %}
